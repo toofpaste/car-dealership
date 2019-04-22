@@ -17,56 +17,61 @@ namespace Dealership
             List<Car> Cars = new List<Car>() { porsche, ford, lexus, honda, lincoln, bmw };
             List<Car> CarsPrice = new List<Car>(0);
 
-            foreach (Car auto in Cars)
+          
+            int i = 0;
+            while (i == 0)
             {
-                CarsPrice.Add(auto);
-            }
-            Console.WriteLine("Check for price? [Y,N]");
-            string ans = Console.ReadLine();
-            bool check = ans == "Y" || ans == "y";
-            if (check)
-            {
-                Console.WriteLine("Enter a price: ");
-                string maxPrice = Console.ReadLine();
-                int numPrice = int.Parse(maxPrice);
-                foreach (Car auto in CarsPrice)
+                Console.WriteLine("Check for price? [Y, N, Q]");
+                string ans = Console.ReadLine();
+                bool check = ans == "Y" || ans == "y";
+                bool quit = ans == "Q" || ans == "q";
+                if(quit)
                 {
-                    if (auto.CheckPrice(numPrice))
-                    {
-                        Console.WriteLine("------------------");
-                        Console.WriteLine(auto.getModel());
-                        Console.WriteLine(auto.getPrice());
-                        Console.WriteLine(auto.getMile());
-                    };
-                }
-            }else
+                    i = 1;
+                    break;
+                };
+                if (check)
                 {
-                Console.WriteLine("Add Car? [Y,N");
-                string addAns = Console.ReadLine();
-                bool checkAdd = addAns == "Y" || addAns == "y";
-                if(checkAdd)
-                {
-                    
-                    Console.WriteLine("Enter year, make, and model");
-                    string make = Console.ReadLine();
-                    Console.WriteLine("Enter Price");
-                    string cost = Console.ReadLine();
-                    int numCost = int.Parse(cost);
-                    Console.WriteLine("Enter Mileage");
-                    string strMile = Console.ReadLine();
-                    int numMile = int.Parse(strMile);
-                    Car newCar = new Car(make, numCost, numMile);
-                    Cars.Add(newCar);
+                    Console.WriteLine("Enter a price: ");
+                    string maxPrice = Console.ReadLine();
+                    int numPrice = int.Parse(maxPrice);
                     foreach (Car auto in Cars)
                     {
+                        CarsPrice.Add(auto);
+                    }
+                    foreach (Car auto in CarsPrice)
+                    {
+                        if (auto.CheckPrice(numPrice))
+                        {
                             Console.WriteLine("------------------");
                             Console.WriteLine(auto.getModel());
                             Console.WriteLine(auto.getPrice());
                             Console.WriteLine(auto.getMile());
+                        };
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Add Car? [Y,N, Q]");
+                    string addAns = Console.ReadLine();
+                    bool checkAdd = addAns == "Y" || addAns == "y";
+                    if (checkAdd)
+                    {
+                        Console.WriteLine("Enter year, make, and model");
+                        string make = Console.ReadLine();
+                        Console.WriteLine("Enter Price");
+                        string cost = Console.ReadLine();
+                        int numCost = int.Parse(cost);
+                        Console.WriteLine("Enter Mileage");
+                        string strMile = Console.ReadLine();
+                        int numMile = int.Parse(strMile);
+                        Car newCar = new Car(make, numCost, numMile);
+                        Cars.Add(newCar);
+                       
+                    }
+                }
+
             }
-     
         }
     }
 }

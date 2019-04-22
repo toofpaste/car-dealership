@@ -17,7 +17,6 @@ namespace Dealership
         {
             return (price > Price);
         }
-
         public string getModel()
         {
             return Model;
